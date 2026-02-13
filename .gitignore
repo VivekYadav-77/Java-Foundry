@@ -1,0 +1,15 @@
+# Ignore all compiled bytecode
+*.class
+
+# Ignore temporary files from IDEs
+.project
+.classpath
+.settings/
+.idea/
+.vscode/
+bin/
+out/
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
