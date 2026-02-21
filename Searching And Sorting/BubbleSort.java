@@ -13,7 +13,7 @@ public class BubbleSort {
             boolean swapped = false;
             for (int j = 0; j < a.length - 1 - i; j++) {
                 if (isAscending ? (a[j] > a[j + 1]) : (a[j] < a[j + 1])) {
-                    swap(a, j, j + 1);
+                    swap(a, j, j + 1); 
                     swapped = true;
                 }
             }
