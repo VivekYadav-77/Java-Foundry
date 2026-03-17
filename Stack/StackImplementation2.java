@@ -1,64 +1,53 @@
 import java.util.Scanner;
-public class StackImplementation1 {
-    public static int top = -1;
-    public static int arr[];
+import java.util.ArrayList;
 
-    
-    public static void push(int num) {
-        if (isFull()) {
-            System.out.println("Stack Overflow! Cannot push.");
-            return;
-        }
-        arr[++top] = num;
+class StackImplementation2 {
+    public ArrayList<Integer> stack = new ArrayList<>();
+
+    public void push(int num) {
+        stack.add(num);
         System.out.println(num + " pushed to stack.");
     }
 
-    public static void pop() {
+    public void pop() {
         if (isEmpty()) {
             System.out.println("Stack Underflow! Nothing to pop.");
             return;
         }
-        System.out.println("Element " + arr[top] + " is popped.");
-        top--;
+        System.out.println("Element " + stack.remove(stack.size() - 1) + " is popped.");
+
     }
 
-    public static void peek() {
+    public void peek() {
         if (isEmpty()) {
             System.out.println("Stack is empty. Nothing to peek.");
             return;
         }
-        System.out.println("Top stack element is: " + arr[top]);
+        System.out.println("Top stack element is: " + stack.get(stack.size() - 1));
     }
 
-    public static boolean isEmpty() {
-        return top == -1;
+    public boolean isEmpty() {
+        return stack.isEmpty();
     }
 
-    public static boolean isFull() {
-        return top == arr.length - 1;
+    public void isFull() {
+        System.out.println("Stack is NOT full.");
     }
 
-    public static void size() {
-        System.out.println("Current size of stack is: " + (top + 1));
+    public void size() {
+        System.out.println("Current size of stack is: " + (stack.size()));
     }
-
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        System.out.println("Enter the size of the stack:");
-        int size = sc.nextInt();
-        sc.nextLine(); 
-        
-        arr = new int[size];
         boolean run = true;
-        
+        StackImplementation2 s = new StackImplementation2();
         while (run) {
-            System.out.println("\n--- Main Menu ---");
+            System.out.println("\n--- Main Menu ---");  
             System.out.println("Enter 1 to perform operation in the stack");
             System.out.println("Enter 2 to exit");
             String choice = sc.nextLine().trim();
-            
+
             switch (choice) {
                 case "1": {
                     System.out.println("\n--- Stack Operations ---");
@@ -69,50 +58,43 @@ public class StackImplementation1 {
                     System.out.println("Enter 5 to check if Full");
                     System.out.println("Enter 6 to see current Size");
                     String operChoice = sc.nextLine().trim();
-                    
+
                     switch (operChoice) {
                         case "1":
-                            if (!isFull()) {
-                                System.out.println("Enter the item to push:");
-                                int num = sc.nextInt();
-                                sc.nextLine(); 
-                                push(num);
-                            } else {
-                                System.out.println("Stack Overflow! Cannot push.");
-                            }
+                            System.out.println("Enter the item to push:");
+                            int num = sc.nextInt();
+                            sc.nextLine();
+                            s.push(num);
+
                             break;
                         case "2":
-                            pop();
+                            s.pop();
                             break;
                         case "3":
-                            peek();
+                            s.peek();
                             break;
                         case "4":
-                            if (isEmpty()) {
+                            if (s.isEmpty()) {
                                 System.out.println("Stack is currently empty.");
                             } else {
-                                System.out.println("Stack is NOT empty. Total elements: " + (top + 1));
+                                System.out.println("Stack is NOT empty. Total elements: " + (s.stack.size()));
                             }
                             break;
                         case "5":
-                            if (isFull()) {
-                                System.out.println("Stack is full!");
-                            } else {
-                                System.out.println("Stack is NOT full. Remaining space: " + (arr.length - (top + 1)));
-                            }
+                            s.isFull();
                             break;
                         case "6":
-                            size();
+                            s.size();
                             break;
                         default:
                             System.out.println("Error: Wrong input. Enter between 1 to 6.");
                             break;
                     }
-                    break; 
-                }       
+                    break;
+                }
                 case "2": {
                     System.out.println("Exiting... Have a good day!");
-                    run = false;      
+                    run = false;
                     break;
                 }
                 default:
