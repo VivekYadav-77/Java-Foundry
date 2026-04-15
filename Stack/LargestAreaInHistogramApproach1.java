@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-class LargestAreaInHistrogramApproach1 {
+class LargestAreaInHistogramApproach1 {
     static int[] NSE(int histoData[], Stack<Integer> stack) {
         int size = histoData.length;
         int NSEarr[] = new int[size];
@@ -50,6 +50,8 @@ class LargestAreaInHistrogramApproach1 {
                 AreaMax = result;
             }
         }
+        System.out.println("The maximum Area is :"+AreaMax);
+
     }
 
     public static void main(String args[]) {
