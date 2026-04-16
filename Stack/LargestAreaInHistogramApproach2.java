@@ -17,8 +17,6 @@ class LargestAreaInHistogramApproach2 {
                 int width = stack.isEmpty() ? i : (i - stack.peek() - 1);
                 int currentArea = arr[topIndex] * width;
 
-                System.out.println("Current Area: " + currentArea);
-
                 if (currentArea > maxArea) {
                     maxArea = currentArea;
                 }
