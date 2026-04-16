@@ -1,3 +1,4 @@
+package Questions;
 class MaxAreaOfHistogram{
     static int CalArea(int arr[]){
         int res = 0;

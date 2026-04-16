@@ -1,3 +1,4 @@
+package Questions;
 import java.util.Stack;
 class NextGreatestElement{
     static void CalculateNGE(int a[]){
