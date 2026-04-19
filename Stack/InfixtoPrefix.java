@@ -22,7 +22,6 @@ class InfixtoPrefix {
         for (int i = exp.length() - 1; i >= 0; i--) {
             if (isOperands(exp.charAt(i))) {
                 PreFixExpe.append(exp.charAt(i));
-                System.out.println("hi" + PreFixExpe);
             } else if (exp.charAt(i) == ')') {
                 stack.push(exp.charAt(i));
 
