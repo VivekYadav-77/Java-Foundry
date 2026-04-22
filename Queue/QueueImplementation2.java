@@ -4,7 +4,8 @@ import java.util.Scanner;
 class QueueImplementation2 {
     static ArrayDeque<Integer> deque = new ArrayDeque<Integer>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         boolean keepRunning = true;
         Scanner sc = new Scanner(System.in);
         while (keepRunning) {
