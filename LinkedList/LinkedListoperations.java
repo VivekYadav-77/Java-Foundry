@@ -65,7 +65,6 @@ class LinkedList{
             Node current = head;
             for(int i = 1 ; i<position-1; i++){
                 current = current.next;
-
             }
             newnode.next = current.next;
             current.next = newnode;
@@ -79,6 +78,69 @@ class LinkedList{
             System.out.println(current.data);
             current = current.next;
         }
+    }
+    public void deletionAtBeginning(){
+        if(head ==null){
+            System.out.println("Linked list is empty");
+            return;
+        }
+        else if(head == tail){
+            System.out.println("hi");
+            System.out.printf("Element %d is deleted\n ", head.data);
+            head =null;
+            tail = null;
+        }
+        else{
+           System.out.printf("Element %d is deleted\n ", head.data);
+            head = head.next;
+        }
+    }
+    public void deletionAtEnd(){
+        int lenght = length();
+        if(head ==null){
+            System.out.println("LinkedList is empty");
+        }else if(head == tail){
+            System.out.printf("Element %d is deleted\n", head.data);
+            head = null;
+            tail =null;
+        }else{
+            Node current = head ; 
+                        System.out.printf("Element %d is deleted\n", tail.data);
+            while(current.next!=tail){
+                current = current.next;
+            }
+            current.next = null ;
+            tail = current;
+        }
+    }
+
+    public void deletionAtpos(int pos){
+        int lenght = length();
+        if(pos <0 || pos >lenght){
+            System.out.println("Invalid Position");
+            return;
+        }
+        if(pos == 1){
+            deletionAtBeginning();
+        }
+        else if (pos == lenght){
+            deletionAtEnd();
+        }
+        else{
+            Node current = head;
+            Node temp ; 
+            for(int i  =1 ; i<pos-1 ; i++){
+                current = current.next;
+
+            }
+            temp = current.next;
+                                    System.out.printf("Element %d is deleted\n", temp.data);
+
+            current.next = temp.next; 
+
+        }
+        
+
     }
 }
 public class LinkedListoperations{
@@ -103,6 +165,11 @@ public class LinkedListoperations{
         System.out.println("enter 1 for insert at beginning: ");
         System.out.println("enter 2 for insert at end: ");
         System.out.println("enter 3 for insert at position: ");
+         System.out.println("enter 4 for deletion at beginning: ");
+        System.out.println("enter 5 for deletion at end: ");
+        System.out.println("enter 6 for deletion at position: ");
+                System.out.println("enter 7 to see the linkedlist: ");
+
         System.out.println("enter 0 for exit ");
         int userinput = sc.nextInt();
         switch(userinput){
@@ -126,6 +193,25 @@ public class LinkedListoperations{
                 List.insertAtPosition(input3, position);
                 List.display();
                 break;
+            case 4:
+                List.deletionAtBeginning();
+                List.display();
+                break;
+            case 5: 
+                List.deletionAtEnd();
+                                List.display();
+
+                break;
+            case 6:
+                System.out.println("Enter the position of  the data you want to delete");
+                int elepostion = sc.nextInt();
+                List.deletionAtpos(elepostion); 
+                                List.display();
+
+                break;
+            case 7:
+                List.display();
+                break ;
             case 0:
                 keepRunning = false;
                 break;
