@@ -50,15 +50,20 @@ class LinkedList{
             tail = newnode ;
         }
     }
-    public void insertAtPosition(int data, int position, int length){
+    public void insertAtPosition(int data, int position){
+        int length = length();
+        if(position < 1 || position > length+1){
+            System.out.println("Invalid position");
+            return;
+        }
         if(position == 1){
             insertAtBeginning(data);
-        }else if(position == length){
+        }else if(position == length+1){
             insertAtend(data);
         }else{
             Node newnode = new Node(data);
             Node current = head;
-            for(int i = 2 ; i<position; i++){
+            for(int i = 1 ; i<position-1; i++){
                 current = current.next;
 
             }
@@ -118,7 +123,7 @@ public class LinkedListoperations{
                 int input3 = sc.nextInt();
                 System.out.println("Enter the position where you want to insert the data");
                 int position = sc.nextInt();
-                List.insertAtPosition(input3, position, List.length());
+                List.insertAtPosition(input3, position);
                 List.display();
                 break;
             case 0:
@@ -128,5 +133,6 @@ public class LinkedListoperations{
     }
     System.out.println("The final linked list is :");
     List.display();
+    sc.close();
 }
 }
