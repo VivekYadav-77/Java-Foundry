@@ -143,6 +143,26 @@ class LinkedList{
         }
 
     }
+    public void reversedoublyLinkedList(){
+        if(head ==null){
+            System.out.println("Linked List is ");
+        }
+        else{
+            Node current =  head;
+            Node temp ; 
+            while(current!=null){
+                temp = current.next;
+                current.next = current.prev;
+                current.prev = temp;
+                current = temp; 
+            }
+            temp = tail;
+            tail= head;
+            head = temp;
+            
+        }
+
+    }
     
 }
 public class DoublyLinkedList{
@@ -171,6 +191,7 @@ public class DoublyLinkedList{
         System.out.println("enter 5 for deletion at end: ");
         System.out.println("enter 6 for deletion at position: ");
         System.out.println("enter 7 to see the linkedlist: ");
+        System.out.println("enter the 8 to reverse doubly linked list");
 
         System.out.println("enter 0 for exit ");
         int userinput = sc.nextInt();
@@ -214,6 +235,10 @@ public class DoublyLinkedList{
             case 7:
                 List.display();
                 break ;
+            case 8 :
+                List.reversedoublyLinkedList();
+                List.display();
+                break;
             case 0:
                 keepRunning = false;
                 break;
@@ -222,5 +247,5 @@ public class DoublyLinkedList{
     System.out.println("The final linked list is :");
     List.display();
     sc.close();
-}
+   }
 }
