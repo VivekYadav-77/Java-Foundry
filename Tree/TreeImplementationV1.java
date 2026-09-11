@@ -11,9 +11,9 @@ class Tree{
     }
 }
 class TreeCreation{
-    Tree create(Scanner sc , String direction , int PreviousElement){
+    Tree create(Scanner sc , String direction , int parentele){
         while(true){
-            System.out.println("\nSelect which operation you want to perform in the "+direction+" branch of the elemnt : "+PreviousElement);
+            System.out.println("\nSelect which operation you want to perform in the "+direction+" branch of the Parent elemnt : "+parentele);
             System.out.println("Enter 1 to insert the element in the "+direction+"branch");
             System.out.println("Enter 0 for the exit");
             int input = sc.nextInt();
@@ -42,14 +42,31 @@ class TreeCreation{
 
 
     }
-    void display(Tree value){
+    void preOrder(Tree value){
         if(value==null){
             return ;
         }
         System.out.println("Element  "+value.data);
-        display(value.left);
-        display(value.right);
+        preOrder(value.left);
+        preOrder(value.right);
 
+    }
+
+    void postOrder(Tree value){
+        if(value==null){
+            return;
+        }
+        postOrder(value.left);
+        postOrder(value.right);
+        System.out.println("Element  "+value.data);
+    }
+    void inOrder(Tree value){
+        if(value == null){
+            return;
+        }
+        inOrder(value.left);
+        System.out.println("Element  "+value.data);
+        inOrder(value.right);
     }
     
 }
@@ -62,8 +79,12 @@ public class TreeImplementationV1{
         Tree newnode = new Tree(rootelemnt);
         newnode.left = creation.create(sc, "LEFT", rootelemnt);
         newnode.right = creation.create(sc, "RIGHT", rootelemnt);
-        
-        creation.display(newnode);
+        System.out.println("Tree in postOrder Traversal ");
+        creation.preOrder(newnode);
+        System.out.println("Tree in postOrder Traversal ");
+        creation.inOrder(newnode);
+        System.out.println("Tree in postOrder Traversal ");
+        creation.postOrder(newnode);
         sc.close() ;
 
         
