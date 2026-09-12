@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.ArrayDeque;
+
 import java.util.LinkedList;
 import java.util.Queue;
 class Tree{
@@ -72,8 +72,8 @@ class TreeCreation{
         System.out.println("Element  "+value.data);
         inOrder(value.right);
     }
-    void leveltraversal(Queue<Tree> queue , Tree value){
-       while(!queue.isEmpty()&&value!=null){
+    void leveltraversal(Queue<Tree> queue){
+       while(!queue.isEmpty()){
         Tree current = queue.poll();
         System.out.println("ELement : "+current.data);
         if(current.left!=null){
@@ -84,13 +84,20 @@ class TreeCreation{
         }
        }
     }
+    int countNode(Tree node){
+        if(node == null){
+            return 0;
+        }
+        int total =1+ countNode(node.left)+countNode(node.right) ;
+        return total;
+
+    }
 }
 public class TreeImplementationV1{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         TreeCreation creation = new TreeCreation();
         Queue<Tree> queue = new LinkedList<>();
-
         System.out.println("Enter the element in the root node : ");
         int rootelemnt = sc.nextInt();
         Tree newnode = new Tree(rootelemnt);
@@ -104,7 +111,9 @@ public class TreeImplementationV1{
         System.out.println("Tree in postOrder Traversal ");
         creation.postOrder(newnode);
         System.out.println("Level Traversal : ");
-        creation.leveltraversal(queue, newnode);
+        creation.leveltraversal(queue);
+        System.out.println("Total number of nodes in the tree is :"+creation.countNode(newnode));
+        
         sc.close() ;
 
         
