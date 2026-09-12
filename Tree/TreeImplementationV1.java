@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
 class Tree{
     Tree left;
     int data;
@@ -11,7 +14,7 @@ class Tree{
     }
 }
 class TreeCreation{
-    Tree create(Scanner sc , String direction , int parentele){
+    Tree create(Scanner sc , String direction , int parentele ){
         while(true){
             System.out.println("\nSelect which operation you want to perform in the "+direction+" branch of the Parent elemnt : "+parentele);
             System.out.println("Enter 1 to insert the element in the "+direction+"branch");
@@ -24,6 +27,7 @@ class TreeCreation{
                     Tree newnode = new Tree( data) ;
                     newnode.left = create(sc,"Left",data);
                     newnode.right = create(sc,"Right",data );
+              
                     return newnode;
                 case 0:
                     return null ;
@@ -68,23 +72,39 @@ class TreeCreation{
         System.out.println("Element  "+value.data);
         inOrder(value.right);
     }
-    
+    void leveltraversal(Queue<Tree> queue , Tree value){
+       while(!queue.isEmpty()&&value!=null){
+        Tree current = queue.poll();
+        System.out.println("ELement : "+current.data);
+        if(current.left!=null){
+            queue.offer(current.left);
+        }
+        if(current.right!=null){
+            queue.offer(current.right);
+        }
+       }
+    }
 }
 public class TreeImplementationV1{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         TreeCreation creation = new TreeCreation();
+        Queue<Tree> queue = new LinkedList<>();
+
         System.out.println("Enter the element in the root node : ");
         int rootelemnt = sc.nextInt();
         Tree newnode = new Tree(rootelemnt);
-        newnode.left = creation.create(sc, "LEFT", rootelemnt);
-        newnode.right = creation.create(sc, "RIGHT", rootelemnt);
-        System.out.println("Tree in postOrder Traversal ");
+        queue.offer(newnode);
+        newnode.left = creation.create(sc, "LEFT", rootelemnt );
+        newnode.right = creation.create(sc, "RIGHT", rootelemnt );
+        System.out.println("Tree in preOrder Traversal ");
         creation.preOrder(newnode);
-        System.out.println("Tree in postOrder Traversal ");
+        System.out.println("Tree in inOrder Traversal ");
         creation.inOrder(newnode);
         System.out.println("Tree in postOrder Traversal ");
         creation.postOrder(newnode);
+        System.out.println("Level Traversal : ");
+        creation.leveltraversal(queue, newnode);
         sc.close() ;
 
         
