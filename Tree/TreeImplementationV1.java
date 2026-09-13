@@ -92,6 +92,13 @@ class TreeCreation{
         return total;
 
     }
+    int SumOfAllNode(Tree node){
+        if(node ==null){
+            return 0;
+        }
+        int result = node.data+SumOfAllNode(node.left)+SumOfAllNode(node.right);
+        return result;
+    }
 }
 public class TreeImplementationV1{
     public static void main(String[] args) {
@@ -113,6 +120,7 @@ public class TreeImplementationV1{
         System.out.println("Level Traversal : ");
         creation.leveltraversal(queue);
         System.out.println("Total number of nodes in the tree is :"+creation.countNode(newnode));
+        System.out.println("Sum of all node is : "+creation.SumOfAllNode(newnode));
         
         sc.close() ;
 
