@@ -92,13 +92,38 @@ class TreeCreation{
         return total;
 
     }
-    int SumOfAllNode(Tree node){
+    int sumOfAllNode(Tree node){
         if(node ==null){
             return 0;
         }
-        int result = node.data+SumOfAllNode(node.left)+SumOfAllNode(node.right);
+        int result = node.data+sumOfAllNode(node.left)+sumOfAllNode(node.right);
         return result;
     }
+    int maxElem(Tree node , int max){
+        if(node == null){
+            return  max;
+        }else if(node.data>max){
+           return maxElem(node.right,maxElem(node.left, node.data) );
+            
+        }else{
+            
+            return maxElem(node.right, maxElem(node.left, max));
+            
+        }
+    }
+    int minElem(Tree node , int min){
+        if(node == null){
+            return  min;
+        }else if(node.data<min){
+           return minElem(node.right,minElem(node.left, node.data) );
+            
+        }else{
+            
+            return minElem(node.right, minElem(node.left, min)); 
+            
+        }
+    }
+   
 }
 public class TreeImplementationV1{
     public static void main(String[] args) {
@@ -120,7 +145,9 @@ public class TreeImplementationV1{
         System.out.println("Level Traversal : ");
         creation.leveltraversal(queue);
         System.out.println("Total number of nodes in the tree is :"+creation.countNode(newnode));
-        System.out.println("Sum of all node is : "+creation.SumOfAllNode(newnode));
+        System.out.println("Sum of all node is : "+creation.sumOfAllNode(newnode));
+        System.out.println("Maximum ELement in the Tree : "+creation.maxElem(newnode,newnode.data));
+        System.out.println("Minimum ELement in the Tree : "+creation.minElem(newnode,newnode.data));
         
         sc.close() ;
 
