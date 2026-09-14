@@ -99,6 +99,7 @@ class TreeCreation{
         int result = node.data+sumOfAllNode(node.left)+sumOfAllNode(node.right);
         return result;
     }
+    //Downward accumulator
     int maxElem(Tree node , int max){
         if(node == null){
             return  max;
@@ -111,6 +112,7 @@ class TreeCreation{
             
         }
     }
+    //Downward accumulator
     int minElem(Tree node , int min){
         if(node == null){
             return  min;
@@ -123,6 +125,25 @@ class TreeCreation{
             
         }
     }
+    //Return-upward
+    int maxElemUpward(Tree node){
+        if(node == null){
+            return Integer.MIN_VALUE;
+        }
+        int leftMax = maxElemUpward(node.left);
+        int rightMax = maxElemUpward(node.right);
+        return Math.max(node.data, Math.max(leftMax, rightMax));
+    }
+    //Return-upward
+    int minElemUpward(Tree node){
+        if(node == null){
+            return Integer.MAX_VALUE;
+        }
+        int leftMin = minElemUpward(node.left);
+        int rightMin = minElemUpward(node.right);
+        return Math.min(node.data, Math.min(leftMin, rightMin));
+    }
+
    
 }
 public class TreeImplementationV1{
@@ -148,6 +169,10 @@ public class TreeImplementationV1{
         System.out.println("Sum of all node is : "+creation.sumOfAllNode(newnode));
         System.out.println("Maximum ELement in the Tree : "+creation.maxElem(newnode,newnode.data));
         System.out.println("Minimum ELement in the Tree : "+creation.minElem(newnode,newnode.data));
+        System.out.println("Maximum ELement in the Tree using upward traversal : "+creation.maxElemUpward(newnode));
+        System.out.println("Minimun ELement in the Tree using upward traversal : "+creation.minElemUpward(newnode));
+
+
         
         sc.close() ;
 
