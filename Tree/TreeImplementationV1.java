@@ -143,6 +143,26 @@ class TreeCreation{
         int rightMin = minElemUpward(node.right);
         return Math.min(node.data, Math.min(leftMin, rightMin));
     }
+    //No of leaf node
+    int noOfLeafNode(Tree node){
+        if(node ==null){
+            return 0;
+        }
+        if(node.left==null && node.right==null){
+            return 1;
+        }
+        return  noOfLeafNode(node.left)+noOfLeafNode(node.right);
+    }
+    //height of the tree 
+    int heightOfTree(Tree node){
+        if(node ==null){
+            return 0;
+        }
+        int leftheight =heightOfTree(node.left);
+        int rightheight = heightOfTree(node.right);
+        return 1+Math.max(leftheight, rightheight);
+
+    }
 
    
 }
@@ -171,6 +191,8 @@ public class TreeImplementationV1{
         System.out.println("Minimum ELement in the Tree : "+creation.minElem(newnode,newnode.data));
         System.out.println("Maximum ELement in the Tree using upward traversal : "+creation.maxElemUpward(newnode));
         System.out.println("Minimun ELement in the Tree using upward traversal : "+creation.minElemUpward(newnode));
+        System.out.println("Number of the leaf node : "+creation.noOfLeafNode(newnode)) ;
+        System.out.println("Height of the tree : "+creation.heightOfTree(newnode));
 
 
         
