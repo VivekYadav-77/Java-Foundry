@@ -163,6 +163,16 @@ class TreeCreation{
         return 1+Math.max(leftheight, rightheight);
 
     }
+    //searching target in tree
+    boolean searchTree(Tree node , int target){
+        if(node==null){
+            return false;
+        }
+        if(target==node.data){
+            return true;
+        }
+        return searchTree(node.left, target) || searchTree(node.right, target);
+    }
 
    
 }
@@ -193,6 +203,16 @@ public class TreeImplementationV1{
         System.out.println("Minimun ELement in the Tree using upward traversal : "+creation.minElemUpward(newnode));
         System.out.println("Number of the leaf node : "+creation.noOfLeafNode(newnode)) ;
         System.out.println("Height of the tree : "+creation.heightOfTree(newnode));
+        System.out.println("Enter the target value you want to search for the availability : ");
+        int target = sc.nextInt();
+        boolean answer = creation.searchTree(newnode, target);
+        if(answer){ 
+            System.out.println("Element "+target+" is avaliable in the tree ");
+
+        }else{
+            System.out.println("Element "+target+" is not available in the tree");
+        }
+
 
 
         
