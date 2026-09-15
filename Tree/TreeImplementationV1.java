@@ -194,6 +194,36 @@ class TreeCreation{
         return noOfNodeAtLevel(node.left, target, currentlevel+1)+noOfNodeAtLevel(node.right, target, currentlevel+1);
 
     }
+    //Level-order traversal
+    void levelByLevelTraversal(Queue<Tree> queue,int currentlevel){
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+             System.out.print("Level "+currentlevel+ " :");
+            for(int i = 0 ; i<size ;i++){
+                Tree currentNodeData = queue.poll();
+                System.out.print( " "+currentNodeData.data);
+             if(currentNodeData.left!=null){
+            queue.offer(currentNodeData.left);
+            }
+            if(currentNodeData.right!=null){
+                queue.offer(currentNodeData.right);
+            }
+                
+            }
+            System.out.println();
+            ++currentlevel;
+           
+             
+            
+
+            
+            
+            
+        }
+        
+
+
+    }
 
 
    
@@ -243,6 +273,8 @@ public class TreeImplementationV1{
         }else{
             System.out.println("Numberof node at level "+targetlevel+" is : "+creation.noOfNodeAtLevel(newnode, targetlevel, 0));
         }
+        queue.offer(newnode);
+        creation.levelByLevelTraversal(queue,0);
         sc.close() ;
         
     }
