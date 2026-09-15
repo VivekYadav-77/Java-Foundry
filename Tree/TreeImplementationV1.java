@@ -173,6 +173,28 @@ class TreeCreation{
         }
         return searchTree(node.left, target) || searchTree(node.right, target);
     }
+    //number node having only one child.
+    int nodeHaveSingleChild(Tree node){
+        if(node ==null){
+            return  0 ;
+        }
+        if((node.left!=null && node.right==null)||(node.left==null && node.right!=null)){
+             return 1+nodeHaveSingleChild(node.left)+nodeHaveSingleChild(node.right);
+        }
+        return nodeHaveSingleChild(node.left)+nodeHaveSingleChild(node.right);
+    }
+    //no of node at a particular level 
+    int noOfNodeAtLevel(Tree node , int target , int currentlevel){
+        if(node ==null){
+            return 0;
+        }
+        if(target==currentlevel){
+            return 1;
+        }
+        return noOfNodeAtLevel(node.left, target, currentlevel+1)+noOfNodeAtLevel(node.right, target, currentlevel+1);
+
+    }
+
 
    
 }
@@ -212,12 +234,16 @@ public class TreeImplementationV1{
         }else{
             System.out.println("Element "+target+" is not available in the tree");
         }
-
-
-
-        
+        System.out.println("No of node having single child : "+creation.nodeHaveSingleChild(newnode));
+        System.out.println("Enter the level at which you want to know number of nodes : ");
+        int targetlevel = sc.nextInt();
+        int height = creation.heightOfTree(newnode);
+        if(targetlevel<0 || targetlevel >height-1){
+            System.out.println("The level "+targetlevel+" does not in the tree ");
+        }else{
+            System.out.println("Numberof node at level "+targetlevel+" is : "+creation.noOfNodeAtLevel(newnode, targetlevel, 0));
+        }
         sc.close() ;
-
         
     }
 }
