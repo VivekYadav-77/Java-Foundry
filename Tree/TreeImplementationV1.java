@@ -13,6 +13,14 @@ class Tree{
 
     }
 }
+class TreeInfo{
+    int height;
+    int diameter;
+    TreeInfo(int height , int diameter){
+        this.height= height;
+        this.diameter=diameter;
+    }
+}
 class TreeCreation{
     Tree create(Scanner sc , String direction , int parentele ){
         while(true){
@@ -212,18 +220,22 @@ class TreeCreation{
             }
             System.out.println();
             ++currentlevel;
-           
-             
-            
-
-            
-            
-            
         }
-        
-
+    }
+    TreeInfo diameter(Tree node){
+        if(node==null){
+            return new TreeInfo(0, 0);
+        }
+        TreeInfo left = diameter(node.left);
+        TreeInfo right = diameter(node.right);
+        int height = 1+Math.max(left.height, right.height);
+        int throughcurrent = 1+left.height+right.height;
+        int diameter = Math.max(throughcurrent,Math.max(left.height, right.height));
+        return new TreeInfo(height, diameter);
 
     }
+
+
 
 
    
@@ -275,6 +287,7 @@ public class TreeImplementationV1{
         }
         queue.offer(newnode);
         creation.levelByLevelTraversal(queue,0);
+        System.out.println("Diameter of the tree is : "+creation.diameter(newnode).diameter) ;
         sc.close() ;
         
     }
