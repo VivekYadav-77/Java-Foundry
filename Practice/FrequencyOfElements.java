@@ -5,11 +5,8 @@ public class FrequencyOfElements{
         Map<Integer,Integer>freq  = new HashMap<>();
         int arr[]= {4, 2, 7, 2, 4, 9, 2};
         for(int num : arr){
-            if(freq.containsKey(num)){
-                freq.put(num,freq.getOrDefault(num,0)+1);
-            }else{
-                freq.put(num, 1);
-            }
+            freq.put(num,freq.getOrDefault(num,0)+1);
+          
 
         }
         freq.forEach((key,value)->System.out.println("Element : "+key+" frequency is : "+value));
