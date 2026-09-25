@@ -44,7 +44,7 @@
 //     }
 // }
 
-// public class TwoTreesAreEqual{
+// public class TwoTreesImplementationWays{
 //     public static void main(String[] args) {
 //         Scanner sc = new Scanner(System.in);
 //         TreeCreation newnode = new TreeCreation(sc);
@@ -100,7 +100,7 @@ class TreeCreation{
 
 }
 
-public class TwoTreesAreEqual{
+public class TwoTreesImplementationWays{
     public static void main(String[] args) {
         TreeCreation tree = new TreeCreation();
         int treeData[]={1, 2, 3, -1, 4,-1,-1,-1, 3, -1, -1};
